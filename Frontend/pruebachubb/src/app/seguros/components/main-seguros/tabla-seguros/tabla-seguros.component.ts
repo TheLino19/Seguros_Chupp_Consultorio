@@ -17,7 +17,7 @@ export class TablaSegurosComponent {
   }
 
 
-eliminarSeguro(id: number) {
+eliminarSeguro(id: string) {
   console.log(id);
   Swal.fire({
     title: '¿Estás seguro?',

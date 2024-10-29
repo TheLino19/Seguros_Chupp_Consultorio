@@ -18,6 +18,7 @@ namespace APPLICATION.Mappers
             // Mapeo existente de SeguroRequestDto a SgrSeguro
             CreateMap<SeguroRequestDto, SgrSeguro>()
                 .ForMember(dest => dest.IdEstado, opt => opt.MapFrom(src => src.IdEstado ?? 1))
+                .ForMember(dest => dest.IdTipoSeguro, opt => opt.MapFrom(src => src.IdEstado ?? 1))
                 .ForMember(dest => dest.IdSeguro, opt => opt.Ignore())
                 .ForMember(dest => dest.AsgAsegurados, opt => opt.Ignore())
                 .ForMember(dest => dest.IdEstadoNavigation, opt => opt.Ignore())

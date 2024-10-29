@@ -20,15 +20,12 @@ export class SeguroService {
     return this.http.post<GenericResponse>(`${this.apiUrl}CrearSeguro`,seguro);
   }
 
-  eliminarSeguro(id: number): Observable<GenericResponse> {
-    return this.http.request<GenericResponse>('DELETE', `${this.apiUrl}eliminarSeguro`, {
-      body: { id }, // El cuerpo donde se envía el ID
-      observe: 'body' // Se asegura de que se observe el cuerpo de la respuesta
-    });
+  eliminarSeguro(codigo: string): Observable<GenericResponse> {
+    return this.http.post<GenericResponse>(`${this.apiUrl}EliminarSeguro`,{ codigo: codigo });
   }
 
   modificarSeguro(seguro:SeguroRequest): Observable<GenericResponse> {
-    return this.http.put<GenericResponse>(`${this.apiUrl}editarSeguro`,seguro);
+    return this.http.post<GenericResponse>(`${this.apiUrl}ModificarSeguro`,seguro);
   }
 
   obtenerExcel(path:string):Observable<GenericResponse>{

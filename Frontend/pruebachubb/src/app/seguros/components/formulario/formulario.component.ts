@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SeguroService } from '../../services/seguro.service';
 import { Seguro, SeguroRequest } from '../../interfaces/seguros-response';
@@ -9,28 +9,40 @@ import Swal from 'sweetalert2';
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css'
 })
-export class FormularioComponent  {
+export class FormularioComponent implements OnChanges {
   @Input() seguro?: Seguro;
   clienteForm: FormGroup;
 
   constructor(private fb: FormBuilder, private _service: SeguroService) {
     this.clienteForm = this.fb.group({
-      codigo_seguro: ['', Validators.required],
-      suma_asegurada: ['', Validators.required],
-      prima: ['', Validators.required],
-      rango_edad_min: ['', Validators.required],
-      rango_edad_max: ['', Validators.required],
-      es_familiar: ['', Validators.required],
-      limite_asegurados: ['', Validators.required],
-      id_tipo_seguro: ['', Validators.required],
-
+      CodigoSeguro: ['', Validators.required],
+      SumaAsegurada: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      Prima: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      RangoEdadMin: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      RangoEdadMax: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      LimiteAsegurados: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      IdTipoSeguro: ['', Validators.required],
     });
-    this.ngOnInit();
+    
+    
   }
   ngOnInit(): void {
     if (this.seguro) {
       this.clienteForm.patchValue({
-        codigo_seguro: this.seguro.codigoSeguro, // Asigna el valor correcto aquí
+        codigo_seguro: this.seguro.codigoSeguro
+      });
+    }
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['seguro'] && this.seguro) {
+      this.clienteForm.patchValue({
+        CodigoSeguro: this.seguro.codigoSeguro,
+        SumaAsegurada: this.seguro.sumaAsegurada,
+        Prima: this.seguro.prima,
+        RangoEdadMin: this.seguro.rangoEdadMin,
+        RangoEdadMax: this.seguro.rangoEdadMax,
+        LimiteAsegurados: this.seguro.limiteAsegurados,
+        IdTipoSeguro: this.seguro.idTipoSeguro,
       });
     }
   }
@@ -64,7 +76,7 @@ export class FormularioComponent  {
     if (this.clienteForm.valid) {
       console.log(this.clienteForm.value);
       const seguro: SeguroRequest = this.clienteForm.value as SeguroRequest;
-      this._service.crearSeguro(seguro).subscribe({
+      this._service.modificarSeguro(seguro).subscribe({
         next: r => {
           
           Swal.fire({

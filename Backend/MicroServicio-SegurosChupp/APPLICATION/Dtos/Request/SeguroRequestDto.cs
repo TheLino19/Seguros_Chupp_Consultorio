@@ -20,7 +20,7 @@ namespace APPLICATION.Dtos.Request
 
         public int? LimiteAsegurados { get; set; }
 
-        public int? IdTipoSeguro { get; set; }
+        public string? IdTipoSeguro { get; set; }
 
         public int? IdEstado { get; set; }
     }

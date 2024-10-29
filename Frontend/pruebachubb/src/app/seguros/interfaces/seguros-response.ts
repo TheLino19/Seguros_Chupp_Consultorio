@@ -12,14 +12,13 @@ export interface Seguro {
   }
   
   export interface SeguroRequest {
-    codigo_seguro: string;
-    suma_asegurada: number;
-    prima: number;
-    rango_edad_min: number;
-    rango_edad_max: number;
-    es_familiar: string;
-    limite_asegurados: number;
-    id_tipo_seguro: string;
+    CodigoSeguro: string;
+    SumaAsegurada: number;
+    Prima: number;
+    RangoEdadMin: number;
+    RangoEdadMax: number;
+    LimiteAsegurados: number;
+    IdTipoSeguro: string;
   }
 
   export interface ClienteExcel {
