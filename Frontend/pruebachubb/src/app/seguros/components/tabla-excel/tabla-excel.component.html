@@ -1,0 +1,52 @@
+<button class="btn btn-sm btn-warning" data-bs-toggle="modal"  (click)="cargarClientes()" >
+    <i class="bi bi-database"></i> Cargar Base de datos
+</button>
+<table class="table table-hover"> 
+    
+    <thead class="table-light">
+        <tr>
+            <th>Cedula</th>
+            <th>Nombre</th>
+            <th>Telefono</th>
+            <th>Edad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cliente of clienteExcel">
+            <td>{{ cliente.cedula}}</td>
+            <td>{{ cliente.nombres }}</td>
+            <td>{{ cliente.telefono }}</td>
+            <td>{{ cliente.edad }}</td>
+            <td>
+               
+                <button class="btn btn-sm btn-warning" data-bs-toggle="modal" (click)="asignarSeguro(cliente)"  data-bs-target="#modalNuevoCliente">
+                    <i class="bi bi-eye-fill"></i>
+                </button>
+                
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="modal fade" id="modalNuevoCliente" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-user-plus me-2"></i>
+                    Asignar Seguros
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              
+          <app-formulario-asignar  [clienteExcel]="cliente" ></app-formulario-asignar>
+            </div>
+            
+        </div>
+    </div>
+  </div>
+  
+            
+  

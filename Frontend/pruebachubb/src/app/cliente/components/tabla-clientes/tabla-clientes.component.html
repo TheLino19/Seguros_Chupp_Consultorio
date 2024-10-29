@@ -1,0 +1,40 @@
+<table class="table table-hover"> 
+    <thead class="table-light">
+        <tr>
+            
+            <th>Cedula</th>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cliente of clientes">
+            <td>{{ cliente.cedula }}</td>
+            <td>{{ cliente.nombres }}</td>
+            <td>{{ cliente.edad }}</td>
+            <td>
+                <span [ngClass]="{ 'badge bg-danger': cliente.estado === true, 'badge bg-success': cliente.estado !== true}">
+                    {{ cliente.estado }}
+                </span>
+            </td>
+            <td>
+               
+
+                <button class="btn btn-sm btn-danger" (click)="eliminarCliente(cliente.cedula)" title="Eliminar">
+                    <i class="bi bi-trash3"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="modal fade" id="modalNuevoCliente" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- <app-formulario-cliente [cliente]="cliente"></app-formulario-cliente> -->
+        </div>
+    </div>
+</div>
+

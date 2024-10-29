@@ -1,0 +1,50 @@
+<table class="table table-hover"> 
+    <thead class="table-light">
+        <tr>
+            <th>ID</th>
+            <th>Código</th>
+            <th>Tipo de Seguro</th>
+            <th>Suma</th>
+            <th>Prima</th>
+            <th>Edad Mínima</th>
+            <th>Edad Máxima</th>
+            <th>Límite Asegurados</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let seguro of seguros">
+            <td>{{ seguro.idSeguro }}</td>
+            <td>{{ seguro.codigoSeguro }}</td>
+            <td>{{ seguro.idTipoSeguro }}</td>
+            <td>{{ seguro.sumaAsegurada }}</td>
+            <td>{{ seguro.prima }}</td>
+            <td>{{ seguro.rangoEdadMin }}</td>
+            <td>{{ seguro.rangoEdadMax }}</td>
+            <td>{{ seguro.limiteAsegurados }}</td>
+            <td>
+                <span [ngClass]="{'badge bg-success': seguro.idEstado === false, 'badge bg-danger': seguro.idEstado !== true}">
+                    {{ seguro.idEstado }}
+                </span>
+            </td>
+            <td>
+               
+                <button class="btn btn-sm btn-warning" data-bs-toggle="modal"  (click)="editarSeguro(seguro)" data-bs-target="#modalNuevoCliente">
+                    <i class="bi bi-pencil-square"></i>
+                </button>
+                <button class="btn btn-sm btn-danger" (click)="eliminarSeguro(seguro.idSeguro)" title="Eliminar">
+                    <i class="bi bi-trash3"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="modal fade" id="modalNuevoCliente" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <app-formulario [seguro]="seguro"></app-formulario>
+        </div>
+    </div>
+</div>

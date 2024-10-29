@@ -1,0 +1,97 @@
+<div class="d-flex flex-column">
+  <div class="d-flex flex-row">
+    <form [formGroup]="clienteForm" (ngSubmit)="onRegister()">
+      <fieldset class="d-flex flex-column ms-5 mt-3 align-items-start ">
+        <legend>Registrar Cliente</legend>
+        <fieldset >
+          <div class="mb-3">
+            <i class="bi bi-credit-card-2-back"></i>
+            <label for="cedula" class="form-label">Cedula</label>
+            <input type="text" 
+                   id="cedula" 
+                   class="form-control"
+                   placeholder="Ejem: 09857522"
+                   formControlName="cedula">
+          </div>
+        
+          <div class="mb-3">
+            <i class="bi bi-person"></i>
+            <label for="nombres" class="form-label">Nombres</label>
+            <input type="text" 
+                   id="nombres" 
+                   class="form-control"
+                   placeholder="Ejem: Marcelo Zambrano"
+                   formControlName="nombres">
+          </div>
+        
+          <div class="mb-3">
+            <i class="bi bi-phone"></i>
+            <label for="telefono" class="form-label">Telefono</label>
+            <input type="text" 
+                   id="telefono" 
+                   class="form-control"
+                   placeholder="Ejem: 0983810738"
+                   formControlName="telefono">
+          </div>
+        
+          <div class="mb-3">
+            <i class="bi bi-calendar-minus"></i>
+            <label for="edad" class="form-label">Edad</label>
+            <input type="text" 
+                   id="edad"
+                   class="form-control"
+                   placeholder="Ejem: 20" 
+                   formControlName="edad">
+          </div>
+        </fieldset>
+        <button type="submit" class="btn btn-primary" [disabled]="clienteForm.invalid">Guardar</button>
+      </fieldset>
+    </form>
+    <div>
+      <div class=" ms-5 mt-3">
+        <div class="card flex-row">
+          <div class="card-header">
+            Disponibles
+          </div>
+          <div class="card-body">
+            <app-card-seguro [seguros]="seguros" (seguroSeleccionado)="recibirSeguro($event)"></app-card-seguro>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            Seguros recién agregados:
+          </div>
+          <div class="card-body">
+            <ul>
+              <li *ngFor="let seguro of segurosDisponibles">{{ seguro }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      Seguros Asociados:
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Tipo de Seguro</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let seguro of segurosAsociados">
+              <td>{{seguro.codigo}}</td>
+              <td>{{seguro.tipoSeguro}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

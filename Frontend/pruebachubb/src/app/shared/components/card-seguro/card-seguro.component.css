@@ -1,0 +1,7 @@
+.list-group-item:hover {
+    background-color:#0d6efd;
+    color: white; /* Cambia el color del texto a blanco si deseas */
+  }
+  .list-group-item {
+    margin-bottom: 5px; /* Espacio de 1px entre las cartas */
+  }

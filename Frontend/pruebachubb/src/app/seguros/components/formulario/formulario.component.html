@@ -1,0 +1,65 @@
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+            <h5 class="modal-title">
+                <i class="fas fa-user-plus me-2"></i>
+                Editar Seguro
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" >
+            <form [formGroup]="clienteForm" (ngSubmit)="onRegister()" class="row g-3">
+                
+                <div class="col-md-6">
+                    <label class="form-label">Codigo del Seguro *</label>
+                    <input type="text" class="form-control" formControlName="codigo_seguro">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Suma Asegurada *</label>
+                    <input type="text" class="form-control" formControlName="suma_asegurada">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Prima *</label>
+                    <input type="text" class="form-control" formControlName="prima">
+                </div>
+                
+                <div class="col-md-6">
+                    <label class="form-label">Tipo de Seguro</label>
+                    <select class="form-select" formControlName="id_tipo_seguro">
+                        <option>Familiar</option>
+                        <option>Viaje</option>
+                        <option>Vehiculo</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label class="form-label">Limite</label>
+                    <input type="text" class="form-control" formControlName="limite_asegurados">
+                </div>
+
+                <!-- Rango de Edad-->
+                <div class="col-md-3">
+                    <label class="form-label">Edad Minima *</label>
+                    <input type="text" class="form-control" formControlName="rango_edad_min">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Edad Maxima *</label>
+                    <input type="text" class="form-control" formControlName="rango_edad_max">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Es Familiar</label>
+                    <select class="form-select" formControlName="es_familiar">
+                        <option>Si</option>
+                        <option>No</option>
+                    </select>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success"[disabled]="clienteForm.invalid">Guardar</button>
+                </div>
+                
+            </form>
+        </div>
+        
+    </div>
+</div>

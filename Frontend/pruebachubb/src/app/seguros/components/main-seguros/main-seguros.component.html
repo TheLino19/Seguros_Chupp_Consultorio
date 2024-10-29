@@ -1,0 +1,105 @@
+<div class="container my-4">
+    
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="mb-0">Gestión de Seguros</h2>
+            <p class="text-muted">Administra la información de tu seguro</p>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalNuevoSeguro">
+                <i class="fas fa-plus me-1"></i> Nuevo Seguro
+            </button>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white">
+                            <i class="fas fa-search text-muted"></i>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Buscar seguro...">
+                    </div>
+                </div>
+                
+            
+                <div class="col-md-2">
+                    <button class="btn btn-primary w-100">
+                        <i class="fas fa-filter me-1"></i> Filtrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <app-tabla-seguros [seguros]="seguros"></app-tabla-seguros>
+    </div>
+</div>
+<div class="modal fade" id="modalNuevoSeguro" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-user-plus me-2"></i>
+                    Nuevo Seguro
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="clienteForm" (ngSubmit)="onRegister()" class="row g-3">
+                    
+                    <div class="col-md-6">
+                        <label class="form-label">Codigo del Seguro *</label>
+                        <input type="text" class="form-control" formControlName="codigo_seguro">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Suma Asegurada *</label>
+                        <input type="text" class="form-control" formControlName="suma_asegurada">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Prima *</label>
+                        <input type="text" class="form-control" formControlName="prima">
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label class="form-label">Tipo de Seguro</label>
+                        <select class="form-select" formControlName="id_tipo_seguro">
+                            <option>Familiar</option>
+                            <option>Viaje</option>
+                            <option>Vehiculo</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label class="form-label">Limite</label>
+                        <input type="text" class="form-control" formControlName="limite_asegurados">
+                    </div>
+
+                    <!-- Rango de Edad-->
+                    <div class="col-md-3">
+                        <label class="form-label">Edad Minima *</label>
+                        <input type="text" class="form-control" formControlName="rango_edad_min">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Edad Maxima *</label>
+                        <input type="text" class="form-control" formControlName="rango_edad_max">
+                    </div>
+                    
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success"[disabled]="clienteForm.invalid">Guardar</button>
+                    </div>
+                    
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+            

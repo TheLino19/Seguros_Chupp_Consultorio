@@ -1,0 +1,12 @@
+.form-select, .form-control{
+    width: 350px    !important;
+}
+.tabla{
+    
+    margin-right: 5%;
+    margin-top: 10%;
+}
+.registerUsuario{
+    background-color: aliceblue;
+    width: 30%;
+}

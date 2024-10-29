@@ -1,0 +1,88 @@
+<div class="container my-4">
+    
+  <div class="row mb-4">
+      <div class="col">
+          <h2 class="mb-0">Gestión de Clientes</h2>
+          <p class="text-muted">Administra la información de tu clientes</p>
+      </div>
+      <div class="col-auto">
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalNuevoSeguro">
+              <i class="fas fa-plus me-1"></i> Nuevo Clientes
+          </button>
+      </div>
+  </div>
+
+  <div class="card mb-4">
+      <div class="card-body">
+          <div class="row g-3">
+              <div class="col-md-4">
+                  <div class="input-group">
+                      <span class="input-group-text bg-white">
+                          <i class="fas fa-search text-muted"></i>
+                      </span>
+                      <input type="text" [(ngModel)]="buscar"  class="form-control" placeholder="Buscar cedula...">
+                  </div>
+              </div>
+              
+          
+              <div class="col-md-2">
+                  <button class="btn btn-primary w-100"  (click)="buscarCedula()">
+                      <i class="fas fa-filter me-1"></i> Filtrar
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="card">
+      <div class="card-body">
+          <div class="table-responsive">
+              <app-tabla-clientes [clientes]="clientes"></app-tabla-clientes>
+  </div>
+</div>
+<div class="modal fade" id="modalNuevoSeguro" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header bg-success text-white">
+              <h5 class="modal-title">
+                  <i class="fas fa-user-plus me-2"></i>
+                  Nuevo Clientes
+              </h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="clienteForm" (ngSubmit)="onRegister()">
+              <fieldset  class="d-flex flex-column ms-5 mt-3 align-items-start ">
+                <legend>Registrar Cliente</legend>
+                <div class="mb-3">
+                  <i class="bi bi-credit-card-2-back"></i>
+                  
+                  <label for="disabledTextInput" class="form-label">Cedula</label>
+                  <input type="text" id="disabledTextInput" class="form-control" placeholder="Ejem: 09857522" formControlName="cedula">
+                </div>
+                <div class="mb-3">
+                  <i class="bi bi-person"></i>
+                  <label for="disabledTextInput" class="form-label">Nombres</label>
+                  <input type="text" id="disabledTextInput" class="form-control" placeholder="Ejem: Marcelo Zambrano" formControlName="nombres">
+                </div>
+                <div class="mb-3">
+                  <i class="bi bi-phone"></i>
+                  <label for="disabledTextInput" class="form-label">Telefono</label>
+                  <input type="text" id="disabledTextInput" class="form-control" placeholder="Ejem: 0983810738" formControlName="telefono">
+                </div>
+                <div class="mb-3">
+                  <i class="bi bi-calendar-minus"></i>
+                  <label for="disabledTextInput" class="form-label">Fecha Nacimiento</label>
+                  <input type="date"  class="form-control" placeholder="Ejem: 20"  formControlName="FechaNacimiento">
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="clienteForm.invalid">Guardar</button>
+              </fieldset>
+            </form>
+        
+          </div>
+          
+      </div>
+  </div>
+</div>
+
+          
